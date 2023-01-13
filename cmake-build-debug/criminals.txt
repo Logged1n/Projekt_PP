@@ -1,0 +1,12 @@
+Jan Kowalski 25 180 80.00 Warszawa 0
+Anna Nowak 30 170 60.00 Krakow 1
+Piotr Wisniewski 35 190 90.00 Poznan 0
+Magdalena Wojciechowska 40 160 50.00 Lodz 1
+Krzysztof Zielinski 45 170 70.00 Gdansk 0
+Agnieszka Dabrowska 50 180 80.00 Wroclaw 1
+Marcin Kozlowski 55 190 90.00 Katowice 0
+Ewelina Lipinska 60 170 70.00 Sopot 1
+Tomasz Majewski 65 180 80.00 Kielce 0
+Monika Kaczmarek 70 190 90.00 Opole 0
+Mariusz Kowalski 24 180 84.45 Lublin 1
+Adam Nowak 30 180 74.45 Zakopane 0

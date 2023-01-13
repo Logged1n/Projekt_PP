@@ -1,0 +1,3 @@
+C:/Users/pawel/CLionProjects/Projket_PP/cmake-build-debug/CMakeFiles/Projekt_PP.dir
+C:/Users/pawel/CLionProjects/Projket_PP/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/pawel/CLionProjects/Projket_PP/cmake-build-debug/CMakeFiles/rebuild_cache.dir
