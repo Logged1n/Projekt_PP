@@ -9,4 +9,4 @@ Anna Nowak 30 170 60.00 Krakow 0
 Adam Nowak 31 180 74.45 Zakopane 0
 Piotr Wisniewski 35 190 90.00 Poznan 0
 Magdalena Wojciechowska 40 160 50.00 Lodz 1
-Krzysztof Zielinski 45 170 70.00 Gdansk 0
+Mateusz Zielinski 45 170 70.00 Gdansk 0

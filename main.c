@@ -298,8 +298,8 @@ void editCode(struct Criminal* criminal, char lastName[]) {
             case 1:
             {
                 printf("Podaj nowe imie przestepcy o nazwisku %s: ", lastName);
-                scanf("%s", criminal->lastName);
-                nameCheck(criminal->lastName);
+                scanf("%s", criminal->firstName);
+                nameCheck(criminal->firstName);
                 printf("Pomyslnie zmieniono imie przestepcy o nazwisku %s!\n", lastName);
                 break;
             }
@@ -372,6 +372,7 @@ struct Criminal* editCriminal(struct Criminal* start) {
         while(tmp != NULL && strcmp(tmp->lastName, input) != 0)
             tmp = tmp->next;
         editCode(tmp, input);
+        return start;
     } else if(count > 1) {
         printf("Istnieje kilku przestepcow o takim nazwisku, prosze podac dodatkowe kryterium:\n");
         showCriminals(filterByLastNameW(start, input));
@@ -422,6 +423,7 @@ struct Criminal* editCriminal(struct Criminal* start) {
         printf("Nie znaleziono przestepcy o nazwisku %s w bazie!\n", input);
         return start;
     }
+    return start;
 }
 
 struct Criminal* deleteCriminal(struct Criminal* start) {
