@@ -280,6 +280,74 @@ struct Criminal* mergeSortByCaptured(struct Criminal* start) {
     second = mergeSortByCaptured(second);
     return mergeByCaptured(start, second);
 }
+void editCode(struct Criminal* criminal, char lastName[]) {
+    int choice =0;
+    do {
+        printf("Wybierz co chcesz edytowac w przestepcy o nazwisku %s:\n"
+               "1. Imie\n"
+               "2. Wiek\n"
+               "3. Wzrost\n"
+               "4. Waga\n"
+               "5. Miejsce ostatnio popelnionego przestepstwa\n"
+               "6. Status sprawy\n"
+               "7. Nie chce juz nic edytowac.\n"
+               "Moj wybor: ", lastName);
+        scanf("%d", &choice);
+        switch(choice)
+        {
+            case 1:
+            {
+                printf("Podaj nowe imie przestepcy o nazwisku %s: ", lastName);
+                scanf("%s", criminal->lastName);
+                nameCheck(criminal->lastName);
+                printf("Pomyslnie zmieniono imie przestepcy o nazwisku %s!\n", lastName);
+                break;
+            }
+            case 2:
+            {
+                printf("Podaj nowy wiek przestepcy o nazwisku %s: ", lastName);
+                scanf("%d", &criminal->age);
+                printf("Pomyslnie zmieniono wiek przestepcy o nazwisku %s!\n", lastName);
+                break;
+            }
+            case 3:
+            {
+                printf("Podaj nowy wzrost wieznia o nazwisku %s: ", lastName);
+                scanf("%d", &criminal->height);
+                break;
+            }
+            case 4:
+            {
+                printf("Podaj nowa wage wieznia o nazwisku %s: ", lastName);
+                scanf("%f", &criminal->weight);
+                break;
+            }
+            case 5:
+            {
+                printf("Podaj nowe miejsce ostatnio popelnionego przestepstwa wieznia o nazwisku %s: ", lastName);
+                scanf("%s", criminal->crimeLocation);
+                nameCheck(criminal->crimeLocation);
+                break;
+            }
+            case 6:
+            {
+                printf("Podaj nowy status sprawy wieznia o nazwisku %s (1 - Zlapany 0 - Niezlapany): ", lastName);
+                scanf("%d", &criminal->captured);
+                break;
+            }
+            case 7:
+            {
+                break;
+            }
+            default:
+            {
+                printf("Dokonaj poprawnego wyboru!");
+                scanf("%d", &choice);
+                break;
+            }
+        }
+    }while(choice != 7);
+}
 
 struct Criminal* editCriminal(struct Criminal* start) {
     if(start == NULL) {
@@ -303,71 +371,7 @@ struct Criminal* editCriminal(struct Criminal* start) {
         tmp = start;
         while(tmp != NULL && strcmp(tmp->lastName, input) != 0)
             tmp = tmp->next;
-        do {
-            printf("Wybierz co chcesz edytowac w przestepcy o nazwisku %s:\n"
-                   "1. Imie\n"
-                   "2. Wiek\n"
-                   "3. Wzrost\n"
-                   "4. Waga\n"
-                   "5. Miejsce ostatnio popelnionego przestepstwa\n"
-                   "6. Status sprawy\n"
-                   "7. Nie chce juz nic edytowac.\n"
-                   "Moj wybor: ", input);
-            scanf("%d", &choice);
-            switch(choice)
-            {
-                case 1:
-                {
-                    printf("Podaj nowe imie przestepcy o nazwisku %s: ", input);
-                    scanf("%s", tmp->lastName);
-                    nameCheck(tmp->lastName);
-                    printf("Pomyslnie zmieniono imie przestepcy o nazwisku %s!\n", input);
-                    break;
-                }
-                case 2:
-                {
-                    printf("Podaj nowy wiek przestepcy o nazwisku %s: ", input);
-                    scanf("%d", &tmp->age);
-                    printf("Pomyslnie zmieniono wiek przestepcy o nazwisku %s!\n", input);
-                    break;
-                }
-                case 3:
-                {
-                    printf("Podaj nowy wzrost wieznia o nazwisku %s: ", input);
-                    scanf("%d", &tmp->height);
-                    break;
-                }
-                case 4:
-                {
-                    printf("Podaj nowa wage wieznia o nazwisku %s: ", input);
-                    scanf("%f", &tmp->weight);
-                    break;
-                }
-                case 5:
-                {
-                    printf("Podaj nowe miejsce ostatnio popelnionego przestepstwa wieznia o nazwisku %s: ", input);
-                    scanf("%s", tmp->crimeLocation);
-                    nameCheck(tmp->crimeLocation);
-                    break;
-                }
-                case 6:
-                {
-                    printf("Podaj nowy status sprawy wieznia o nazwisku %s (1 - Zlapany 0 - Niezlapany): ", input);
-                    scanf("%d", &tmp->captured);
-                    break;
-                }
-                case 7:
-                {
-                    break;
-                }
-                default:
-                {
-                    printf("Dokonaj poprawnego wyboru!");
-                    scanf("%d", &choice);
-                    break;
-                }
-            }
-        }while(choice != 7);
+        editCode(tmp, input);
     } else if(count > 1) {
         printf("Istnieje kilku przestepcow o takim nazwisku, prosze podac dodatkowe kryterium:\n");
         showCriminals(filterByLastNameW(start, input));
@@ -388,75 +392,7 @@ struct Criminal* editCriminal(struct Criminal* start) {
                     printf("Nie znaleziono przestepcy o podanym nazwisku i imieniu\n");
                     return start;
                 }
-                do {
-                    printf("Wybierz co chcesz edytowac w przestepcy o nazwisku %s:\n"
-                           "1. Imie\n"
-                           "2. Wiek\n"
-                           "3. Wzrost\n"
-                           "4. Waga\n"
-                           "5. Miejsce ostatnio popelnionego przestepstwa\n"
-                           "6. Status sprawy\n"
-                           "7. Nie chce juz nic edytowac.\n"
-                           "Moj wybor: ", input);
-                    scanf("%d", &choice);
-                    switch(choice)
-                    {
-                        case 1:
-                        {
-                            printf("Podaj nowe imie przestepcy o nazwisku %s: ", input);
-                            scanf("%s", tmp->lastName);
-                            nameCheck(tmp->lastName);
-                            printf("Pomyslnie zmieniono imie przestepcy o nazwisku %s!\n", input);
-                            break;
-                        }
-                        case 2:
-                        {
-                            printf("Podaj nowy wiek przestepcy o nazwisku %s: ", input);
-                            scanf("%d", &tmp->age);
-                            printf("Pomyslnie zmieniono wiek przestepcy o nazwisku %s!\n", input);
-                            break;
-                        }
-                        case 3:
-                        {
-                            printf("Podaj nowy wzrost przestepcy o nazwisku %s: ", input);
-                            scanf("%d", &tmp->height);
-                            printf("Pomyslnie zmieniono wzrost przestepcy o nazwisku %s!\n", input);
-                            break;
-                        }
-                        case 4:
-                        {
-                            printf("Podaj nowa wage przestepcy o nazwisku %s: ", input);
-                            scanf("%f", &tmp->weight);
-                            printf("Pomyslnie zmieniono wage przestepcy o nazwisku %s!\n", input);
-                            break;
-                        }
-                        case 5:
-                        {
-                            printf("Podaj nowe miejsce ostatnio popelnionego przestepstwa przestepcy o nazwisku %s: ", input);
-                            scanf("%s", tmp->crimeLocation);
-                            nameCheck(tmp->crimeLocation);
-                            printf("Pomyslnie zmieniono miejsce ostatnio popelnionego przestepstwa przestepcy o nazwisku %s!\n", input);
-                            break;
-                        }
-                        case 6:
-                        {
-                            printf("Podaj nowy status sprawy przestepcy o nazwisku %s (1 - Zlapany 0 - Niezlapany): ", input);
-                            scanf("%d", &tmp->captured);
-                            printf("Pomyslnie zmieniono status sprawy przestepcy o nazwisku %s!\n", input);
-                            break;
-                        }
-                        case 7:
-                        {
-                            break;
-                        }
-                        default:
-                        {
-                            printf("Dokonaj poprawnego wyboru!");
-                            scanf("%d", &choice);
-                            break;
-                        }
-                    }
-                }while(choice != 7);
+                editCode(tmp, input);
                 break;
             }
             case 2: {
@@ -471,72 +407,7 @@ struct Criminal* editCriminal(struct Criminal* start) {
                     printf("Nie znaleziono przestepcy o podanym nazwisku i wieku\n");
                     return start;
                 }
-                do {
-                    printf("Wybierz co chcesz edytowac w przestepcy o nazwisku %s:\n"
-                           "1. Imie\n"
-                           "2. Wiek\n"
-                           "3. Wzrost\n"
-                           "4. Waga\n"
-                           "5. Miejsce ostatnio popelnionego przestepstwa\n"
-                           "6. Status sprawy\n"
-                           "7. Nie chce juz nic edytowac.\n"
-                           "Moj wybor: ", input);
-                    scanf("%d", &choice);
-                    switch(choice)
-                    {
-                        case 1:
-                        {
-                            printf("Podaj nowe imie przestepcy o nazwisku %s: ", input);
-                            scanf("%s", tmp->lastName);
-                            nameCheck(tmp->lastName);
-                            printf("Pomyslnie zmieniono imie przestepcy o nazwisku %s!\n", input);
-                            break;
-                        }
-                        case 2:
-                        {
-                            printf("Podaj nowy wiek przestepcy o nazwisku %s: ", input);
-                            scanf("%d", &tmp->age);
-                            printf("Pomyslnie zmieniono wiek przestepcy o nazwisku %s!\n", input);
-                            break;
-                        }
-                        case 3:
-                        {
-                            printf("Podaj nowy wzrost wieznia o nazwisku %s: ", input);
-                            scanf("%d", &tmp->height);
-                            break;
-                        }
-                        case 4:
-                        {
-                            printf("Podaj nowa wage wieznia o nazwisku %s: ", input);
-                            scanf("%f", &tmp->weight);
-                            break;
-                        }
-                        case 5:
-                        {
-                            printf("Podaj nowe miejsce ostatnio popelnionego przestepstwa wieznia o nazwisku %s: ", input);
-                            scanf("%s", tmp->crimeLocation);
-                            nameCheck(tmp->crimeLocation);
-                            break;
-                        }
-                        case 6:
-                        {
-                            printf("Podaj nowy status sprawy wieznia o nazwisku %s (1 - Zlapany 0 - Niezlapany): ", input);
-                            scanf("%d", &tmp->captured);
-                            break;
-                        }
-                        case 7:
-                        {
-                            return start;
-                            break;
-                        }
-                        default:
-                        {
-                            printf("Dokonaj poprawnego wyboru!");
-                            scanf("%d", &choice);
-                            break;
-                        }
-                    }
-                }while(choice != 7);
+                editCode(tmp, input);
                 break;
             }
             default:
