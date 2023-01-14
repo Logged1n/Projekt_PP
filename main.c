@@ -370,6 +370,7 @@ struct Criminal* editCriminal(struct Criminal* start) {
         }while(choice != 7);
     } else if(count > 1) {
         printf("Istnieje kilku przestepcow o takim nazwisku, prosze podac dodatkowe kryterium:\n");
+        showCriminals(filterByLastNameW(start, input));
         printf("1. Imie\n");
         printf("2. Wiek\n");
         scanf("%d", &choice);
@@ -417,27 +418,31 @@ struct Criminal* editCriminal(struct Criminal* start) {
                         }
                         case 3:
                         {
-                            printf("Podaj nowy wzrost wieznia o nazwisku %s: ", input);
+                            printf("Podaj nowy wzrost przestepcy o nazwisku %s: ", input);
                             scanf("%d", &tmp->height);
+                            printf("Pomyslnie zmieniono wzrost przestepcy o nazwisku %s!\n", input);
                             break;
                         }
                         case 4:
                         {
-                            printf("Podaj nowa wage wieznia o nazwisku %s: ", input);
+                            printf("Podaj nowa wage przestepcy o nazwisku %s: ", input);
                             scanf("%f", &tmp->weight);
+                            printf("Pomyslnie zmieniono wage przestepcy o nazwisku %s!\n", input);
                             break;
                         }
                         case 5:
                         {
-                            printf("Podaj nowe miejsce ostatnio popelnionego przestepstwa wieznia o nazwisku %s: ", input);
+                            printf("Podaj nowe miejsce ostatnio popelnionego przestepstwa przestepcy o nazwisku %s: ", input);
                             scanf("%s", tmp->crimeLocation);
                             nameCheck(tmp->crimeLocation);
+                            printf("Pomyslnie zmieniono miejsce ostatnio popelnionego przestepstwa przestepcy o nazwisku %s!\n", input);
                             break;
                         }
                         case 6:
                         {
-                            printf("Podaj nowy status sprawy wieznia o nazwisku %s (1 - Zlapany 0 - Niezlapany): ", input);
+                            printf("Podaj nowy status sprawy przestepcy o nazwisku %s (1 - Zlapany 0 - Niezlapany): ", input);
                             scanf("%d", &tmp->captured);
+                            printf("Pomyslnie zmieniono status sprawy przestepcy o nazwisku %s!\n", input);
                             break;
                         }
                         case 7:
@@ -521,6 +526,7 @@ struct Criminal* editCriminal(struct Criminal* start) {
                         }
                         case 7:
                         {
+                            return start;
                             break;
                         }
                         default:
@@ -534,8 +540,12 @@ struct Criminal* editCriminal(struct Criminal* start) {
                 break;
             }
             default:
-                printf("Nieprawidlowy wybor, spróbuj ponownie\n");
-                return start;
+            {
+                printf("Nieprawidlowy wybor, spróbuj ponownie\n"
+                       "Moj wybor: ");
+                scanf("%d", &choice);
+                break;
+            }
         }
     } else {
         printf("Nie znaleziono przestepcy o nazwisku %s w bazie!\n", input);
@@ -608,6 +618,7 @@ struct Criminal* deleteCriminal(struct Criminal* start) {
                 char firstName[256];
                 printf("Podaj imie przestepcy: ");
                 scanf("%s", firstName);
+                nameCheck(firstName);
                 tmp = start;
                 while(tmp->next != NULL && (strcmp(tmp->next->lastName, input) != 0 || strcmp(tmp->next->firstName, firstName) != 0)) {
                     tmp = tmp->next;
@@ -675,7 +686,7 @@ void wait() {
 int main() {
     struct Criminal *criminals = NULL;
     criminals = loadData(criminals); //wczytywanie danych z pliku
-    int userChoose = 0;
+    int userChoice = 0;
     do {
         system("cls");
         printf("MENU\n"
@@ -691,8 +702,8 @@ int main() {
                "9. Wyswietl przestepcow posortowanych wedlug statusu sprawy\n"
                "10. Zakoncz program.\n"
                "Moj wybor: ");
-        scanf("%d", &userChoose);
-        switch(userChoose) {
+        scanf("%d", &userChoice);
+        switch(userChoice) {
             case 1:
             {
                 showCriminals(criminals);
@@ -760,10 +771,10 @@ int main() {
             default:
             {
                 printf("Dokonaj prawidlowego wyboru!\n");
-                scanf("%d", &userChoose);
+                scanf("%d", &userChoice);
                 break;
             }
         }
-    }while(userChoose != 10);
+    }while(userChoice != 10);
     return 0;
 }
