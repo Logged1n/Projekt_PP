@@ -33,11 +33,8 @@ struct Criminal {
 
 struct Criminal *loadData(struct Criminal *start) {
     FILE *criminalsData = fopen("criminals.txt", "r");
-    if(criminalsData == NULL) {
-        printf("xdd");
+    if(criminalsData == NULL)
         return NULL;
-    }
-
     while(!feof(criminalsData)) {
         struct Criminal *newCriminal = malloc(sizeof(*newCriminal));
         fscanf(criminalsData, "%s%s", newCriminal->firstName, newCriminal->lastName);
@@ -242,7 +239,7 @@ struct Criminal* split(struct Criminal *start) {
         slow = slow->next; // wolny, bo przeskakuje tylko po razie...
         fast = fast->next->next; // ...a tutaj o 2 pozycje!
     }
-    struct Criminal *tmp = slow->next;
+    struct Criminal *tmp =slow->next;
     slow->next = NULL;
     return tmp;
 }
